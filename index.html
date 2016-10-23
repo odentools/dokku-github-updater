@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8" />
+	<title>dokku-github-updater</title>
+	<style>
+
+	html {
+		margin: 0 0 0 0;
+	}
+
+	body {
+		background-color: #fefefe;
+		color: #202020;
+		margin: 2rem;
+		font-size: 12pt;
+	}
+
+	h2, h3, h4 {
+		margin-left: 1rem;
+	}
+
+	p, ul {
+		margin-left: 1.5rem;
+	}
+
+	p.small, span.small {
+		font-size: 10pt;
+	}
+
+	hr {
+		border: 0.5px solid #e0e0e0;
+		margin-top: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	</style>
+</head>
+<body>
+
+	<h1>dokku-github-updater</h1>
+
+	<h2>Configuration for GitHub</h1>
+
+	<h3>1. Open the "Add webhooks" page of Your GitHub project.</h3>
+
+		<p>
+			Firstly, open the hook page of Your GitHub project.<br/>
+			<span class="small">e.g. https://github.com/<u><i>YOUR_NAME</i></u>/<u><i>YOUR_PROJECT_NAME</i></u>/settings/hooks</span>
+		</p>
+
+		<p>
+			Then, click the "Add webhook" button on the top right corner.
+		</p>
+
+	<h3>2. Fill the form</h3>
+
+		<p>
+			Then, fill the fields as the follows.
+
+			<ul>
+				<li>
+					<b>Payload URL:</b><br/>
+					<script>
+						var base_url = window.location.protocol + '//' + window.location.host + window.location.pathname;
+						document.write(base_url + '<u><i>DOKKU_APP_NAME</i></u>');
+					</script>
+					<br/>
+					<span class="small">Hint: You need replace <u>DOKKU_APP_NAME</u> with your published app name on the dokku.</span>
+				</li>
+				<li>
+					<b>Content type:</b><br/>
+					application/json
+				</li>
+				<li>
+					<b>Secret</b><br/>
+					<span class="small">(Paste the secret string that generated in Initial Setup of dokku-github-updater)</span>
+				</li>
+				<li>
+					<b>Which events would you like to trigger this webhook?</b><br/>
+					Just the push event.
+				</li>
+				<li>
+					<b>Active</b><br/>
+					True
+				</li>
+			</ul>
+
+		</p>
+
+		<p>
+			After that, click the "Add webhook" button on the bottom of the form.
+		</p>
+
+	<h3>3. Let's trying the hook</h3>
+
+		<p>
+			You can check the status on the webhook page that configured in the step-2.
+		</p>
+
+	</hr>
+
+	<div style="float: right;">
+		<p class="small">
+			&copy; <a href="https://github.com/odentools">OdenTools Project</a>.
+		</p>
+	</div>
+
+</body>
+</html>
